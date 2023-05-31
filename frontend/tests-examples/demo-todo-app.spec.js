@@ -11,6 +11,41 @@ const TODO_ITEMS = [
   'book a doctors appointment',
 ];
 
+async function createDefaultTodos(page) {
+  // create a new todo locator
+  const newTodo = page.getByPlaceholder('What needs to be done?');
+
+  /* eslint-disable-next-line */
+  for (const item of TODO_ITEMS) {
+    newTodo.fill(item);
+    newTodo.press('Enter');
+  }
+}
+
+/**
+ * @param {import('@playwright/test').Page} page
+ * @param {number} expected
+ */
+async function checkNumberOfTodosInLocalStorage(page, expected) {
+  return page.waitForFunction((e) => JSON.parse(localStorage['react-todos']).length === e, expected);
+}
+//
+/**
+ * @param {import('@playwright/test').Page} page
+ * @param {number} expected
+ */
+async function checkNumberOfCompletedTodosInLocalStorage(page, expected) {
+  return page.waitForFunction((e) => JSON.parse(localStorage['react-todos']).filter((i) => i.completed).length === e, expected);
+}
+
+/**
+ * @param {import('@playwright/test').Page} page
+ * @param {string} title
+ */
+async function checkTodosInLocalStorage(page, title) {
+  return page.waitForFunction((t) => JSON.parse(localStorage['react-todos']).map((i) => i.title).includes(t), title);
+}
+
 test.describe('New Todo', () => {
   test('should allow me to add todo items', async ({ page }) => {
     // create a new todo locator
@@ -22,7 +57,7 @@ test.describe('New Todo', () => {
 
     // Make sure the list only has one todo item.
     await expect(page.getByTestId('todo-title')).toHaveText([
-      TODO_ITEMS[0]
+      TODO_ITEMS[0],
     ]);
 
     // Create 2nd todo.
@@ -32,7 +67,7 @@ test.describe('New Todo', () => {
     // Make sure the list now has two todo items.
     await expect(page.getByTestId('todo-title')).toHaveText([
       TODO_ITEMS[0],
-      TODO_ITEMS[1]
+      TODO_ITEMS[1],
     ]);
 
     await checkNumberOfTodosInLocalStorage(page, 2);
@@ -126,9 +161,10 @@ test.describe('Item', () => {
     const newTodo = page.getByPlaceholder('What needs to be done?');
 
     // Create two items.
+    /* eslint-disable-next-line */
     for (const item of TODO_ITEMS.slice(0, 2)) {
-      await newTodo.fill(item);
-      await newTodo.press('Enter');
+      newTodo.fill(item);
+      newTodo.press('Enter');
     }
 
     // Check first item.
@@ -151,9 +187,10 @@ test.describe('Item', () => {
     const newTodo = page.getByPlaceholder('What needs to be done?');
 
     // Create two items.
+    /* eslint-disable-next-line */
     for (const item of TODO_ITEMS.slice(0, 2)) {
-      await newTodo.fill(item);
-      await newTodo.press('Enter');
+      newTodo.fill(item);
+      newTodo.press('Enter');
     }
 
     const firstTodo = page.getByTestId('todo-item').nth(0);
@@ -185,7 +222,7 @@ test.describe('Item', () => {
     await expect(todoItems).toHaveText([
       TODO_ITEMS[0],
       'buy some sausages',
-      TODO_ITEMS[2]
+      TODO_ITEMS[2],
     ]);
     await checkTodosInLocalStorage(page, 'buy some sausages');
   });
@@ -262,7 +299,7 @@ test.describe('Counter', () => {
     const newTodo = page.getByPlaceholder('What needs to be done?');
 
     // create a todo count locator
-    const todoCount = page.getByTestId('todo-count')
+    const todoCount = page.getByTestId('todo-count');
 
     await newTodo.fill(TODO_ITEMS[0]);
     await newTodo.press('Enter');
@@ -306,9 +343,10 @@ test.describe('Persistence', () => {
     // create a new todo locator
     const newTodo = page.getByPlaceholder('What needs to be done?');
 
+    /* eslint-disable-next-line */
     for (const item of TODO_ITEMS.slice(0, 2)) {
-      await newTodo.fill(item);
-      await newTodo.press('Enter');
+      newTodo.fill(item);
+      newTodo.press('Enter');
     }
 
     const todoItems = page.getByTestId('todo-item');
@@ -406,43 +444,3 @@ test.describe('Routing', () => {
     await expect(completedLink).toHaveClass('selected');
   });
 });
-
-async function createDefaultTodos(page) {
-  // create a new todo locator
-  const newTodo = page.getByPlaceholder('What needs to be done?');
-
-  for (const item of TODO_ITEMS) {
-    await newTodo.fill(item);
-    await newTodo.press('Enter');
-  }
-}
-
-/**
- * @param {import('@playwright/test').Page} page
- * @param {number} expected
- */
-async function checkNumberOfTodosInLocalStorage(page, expected) {
-  return await page.waitForFunction(e => {
-    return JSON.parse(localStorage['react-todos']).length === e;
-  }, expected);
-}
-
-/**
- * @param {import('@playwright/test').Page} page
- * @param {number} expected
- */
-async function checkNumberOfCompletedTodosInLocalStorage(page, expected) {
-  return await page.waitForFunction(e => {
-    return JSON.parse(localStorage['react-todos']).filter(i => i.completed).length === e;
-  }, expected);
-}
-
-/**
- * @param {import('@playwright/test').Page} page
- * @param {string} title
- */
-async function checkTodosInLocalStorage(page, title) {
-  return await page.waitForFunction(t => {
-    return JSON.parse(localStorage['react-todos']).map(i => i.title).includes(t);
-  }, title);
-}
