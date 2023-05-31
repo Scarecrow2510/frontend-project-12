@@ -1,0 +1,158 @@
+[data-changecolour="hover"] {
+  transition-duration: 0.8s;
+}
+
+[data-changecolour="hover"]:hover {
+  /* background-color: rgb(171, 181, 190);  */
+  background-color: rgb(13, 110, 253);
+  transition-property: background-color;
+  transition-duration: 0.8s;
+  color: white;
+}
+
+.navbar-brand {
+  margin-left: 12px;
+  /* position: relative;
+  right: 10px; */
+}
+
+#channel-button-left {
+  border-radius: 0px;
+  border-color: transparent;
+  text-overflow: clip;
+}
+
+#channel-button-right {
+  border-radius: 0px;
+  border-color: transparent;
+}
+
+#channels-image-plus:hover {
+  border-color: transparent;
+  transition: transform 0.3s ease-in-out;
+  transform: scale(1.1);
+}
+
+#signIn-login-button {
+  margin-top: 25px;
+}
+
+#signUp-errors {
+  margin-left: 5px;
+  margin-top: 3px;
+  width: 100%;
+  background: none;
+  color: red;
+}
+
+#signIn-error {
+  margin-top: 5px;
+  margin-left: 5px;
+  width: 100%;
+  background: none;
+  color: red;
+}
+
+#signUp-form {
+  width: 50%;
+  white-space: nowrap;
+}
+
+#main-network-img {
+  width: 22px;
+  margin-right: 20px;
+  margin-left: auto;
+}
+
+#img-logout-lngs {
+  position: relative;
+  right: 10px;
+}
+
+#change-lang-img {
+  position: absolute;
+  width: 24px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  will-change: transform;
+  }
+  
+#language-button {
+  margin-left: 10px;
+  position: relative;
+  width: 40px;
+  height: 38px;
+  border-color: transparent;
+  cursor: pointer;
+  transition: all .3s;
+  will-change: transform;
+}
+
+#language-button:hover {
+  transform: scale(1.1);
+}
+
+#language-button:active {
+  transform: scale(.98);
+}
+
+#language-button:hover #change-lang-img {
+  backface-visibility: hidden;
+}
+
+#language-button:active #change-lang-img {
+  backface-visibility: hidden;
+}
+
+.Toastify__toast {
+  top: 60px !important;
+  left: 68px !important;
+  width: 230px !important;
+  height: 74px !important;
+  font-size: 14px;
+  text-align: center;
+}
+
+@media (max-width: 1055px) {
+  #signIn-login-button {
+    margin-top: 40px;
+  }
+}
+
+@media (max-width: 310px) {
+  #signIn-login-button {
+    margin-top: 60px;
+  }
+}
+
+@media (max-width: 500px) {
+  #signUp-form {
+    width: 100%;
+  }
+}
+
+@media (max-width: 290px) {
+  #signUp-form {
+    width: 120%;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1040px) {
+  #signUp-image {
+    width: 80%;
+    height: 80%;
+  }
+}
+
+@media (max-width: 991px) {
+  #channels-col {
+    width: 30%;
+  }
+}
+
+@media (max-width: 575px) and (min-width: 280px) {
+  #channels-col {
+    width: 35%;
+  }
+}
