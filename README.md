@@ -14,5 +14,3 @@ Installation:
 2. cd frontend-project-12/
 3. make install
 4. make start
-
-Railway.app: scarecrow2510-onlinechat.up.railway.app
