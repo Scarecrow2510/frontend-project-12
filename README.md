@@ -14,4 +14,6 @@ Description:
 Его цель - показать спектр всех стандартных задач, с которыми придётся столкнуться в реальной жизни.
 Среди них: работа с веб-сокетами, взаимодействие с REST API, использование React (с хуками), Redux (через reduxjs/toolkit), организация роутинга на клиенте, авторизация и аутентификация, сборка (webpack) и деплой.
 
-Railway.app: https://railway.app/project/09273249-3d75-4551-81c1-fa3587f1e9d2/service/8bb91563-7f65-4188-a09a-1d79e2ef9f9e
+[![Maintainability](https://api.codeclimate.com/v1/badges/6808c91f916ab0188b22/maintainability)](https://codeclimate.com/github/Scarecrow2510/frontend-project-12/maintainability)
+
+Railway.app: frontend-project-12-production-98a9.up.railway.app
