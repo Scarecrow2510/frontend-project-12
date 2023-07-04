@@ -7,7 +7,7 @@ import axios from 'axios';
 import { useRef, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import SignUp from '../images/SignUp.jpg';
+import SignUp from '../public/SignUp.jpg';
 import routes from '../routes/routes';
 import useNetwork from '../hooks/networkHook';
 import useAuth from '../hooks/authHook';

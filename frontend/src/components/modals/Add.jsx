@@ -40,8 +40,8 @@ const Add = ({ onHide }) => {
     validationSchema: channelNameSchema,
     validateOnChange: false,
     validateOnBlur: false,
-    onSubmit: () => {
-      chatApi.sendChannel({ name: f.values.channelName, author: username })
+    onSubmit: async () => {
+      await chatApi.sendChannel({ name: f.values.channelName, author: username })
         .then((data) => {
           dispatch(setActiveChannel(data.id));
           toast.success(t('toastify.add'));

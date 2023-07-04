@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
@@ -7,12 +8,12 @@ import Channels from './chatPages/Channels';
 import Messages from './chatPages/Messages';
 import { addMessages } from '../slices/messagesSlice';
 import { addChannels, setActiveChannel } from '../slices/channelsSlice';
-import store from '../slices/index';
 import routes from '../routes/routes';
 import useAuth from '../hooks/authHook';
 
 const ChatPage = () => {
   const { t } = useTranslation();
+  const dispatch = useDispatch();
   const auth = useAuth();
   const navigate = useNavigate();
 
@@ -26,9 +27,9 @@ const ChatPage = () => {
         const { channels, messages, currentChannelId } = responce.data;
         const findCurrentChannel = channels.filter((channel) => channel.id === currentChannelId);
         const [currentActiveChannel] = findCurrentChannel;
-        store.dispatch(setActiveChannel(currentActiveChannel.id));
-        store.dispatch(addChannels(channels));
-        store.dispatch(addMessages(messages));
+        dispatch(setActiveChannel(currentActiveChannel.id));
+        dispatch(addChannels(channels));
+        dispatch(addMessages(messages));
       }).catch((err) => {
         switch (err.status) {
           case 401:
@@ -42,7 +43,7 @@ const ChatPage = () => {
       });
     };
     getData();
-  }, [t, auth, navigate]);
+  }, [t, dispatch, auth, navigate]);
 
   return (
     <div className="container h-100 my-4 overflow-hidden rounded shadow">

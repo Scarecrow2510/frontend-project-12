@@ -10,7 +10,7 @@ import {
   Form, Button, Row, Col, Card, Container,
 } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
-import Login from '../images/Login.jpg';
+import Login from '../public/Login.jpg';
 import routes from '../routes/routes.js';
 import useAuth from '../hooks/authHook';
 import useNetwork from '../hooks/networkHook';
