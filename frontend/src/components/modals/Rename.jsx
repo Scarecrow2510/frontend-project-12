@@ -35,13 +35,13 @@ const Rename = ({ onHide, modalInfo }) => {
     validationSchema: channelRenameSchema,
     validateOnChange: false,
     validateOnBlur: false,
-    onSubmit: () => {
+    onSubmit: async () => {
       const newData = {
         name: f.values.newChannelName,
         id: f.values.channelId,
         removable: f.values.channelRemovable,
       };
-      chatApi.sendRenamedChannel(newData)
+      await chatApi.sendRenamedChannel(newData)
         .then(() => {
           toast.success(t('toastify.rename'));
           onHide();

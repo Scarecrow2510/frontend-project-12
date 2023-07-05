@@ -7,5 +7,5 @@ import Init from './init.js';
 const socket = io();
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  Init(socket),
+  await Init(socket),
 );

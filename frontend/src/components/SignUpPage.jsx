@@ -62,7 +62,7 @@ const SignUpPage = () => {
     onSubmit: async () => {
       setAuthError(false);
       setServerError(false);
-      axios
+      await axios
         .post(routes.usersPath(), {
           username: f.values.username,
           password: f.values.password,

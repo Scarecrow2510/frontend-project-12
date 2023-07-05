@@ -24,10 +24,10 @@ const rollbarConfig = {
   captureUnhandledRejections: true,
 };
 
-const Init = (socket) => {
+const Init = async (socket) => {
   const defaultLanguage = JSON.parse(localStorage.getItem('currentLanguage')) ?? 'ru';
 
-  i18next
+  await i18next
     .use(initReactI18next)
     .init({
       debug: false,

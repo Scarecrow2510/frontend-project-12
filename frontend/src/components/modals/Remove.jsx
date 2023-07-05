@@ -16,8 +16,8 @@ const Remove = ({ onHide, modalInfo }) => {
     initialValues: {
       removingChannelId: modalInfo.item.id,
     },
-    onSubmit: () => {
-      chatApi.sendRemovedChannel({ id: f.values.removingChannelId })
+    onSubmit: async () => {
+      await chatApi.sendRemovedChannel({ id: f.values.removingChannelId })
         .then(() => {
           toast.success(t('toastify.remove'));
           onHide();

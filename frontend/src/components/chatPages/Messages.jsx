@@ -33,9 +33,9 @@ const Messages = () => {
     initialValues: {
       currentMessage: '',
     },
-    onSubmit: () => {
+    onSubmit: async () => {
       const filteredMessage = filter.clean(f.values.currentMessage);
-      chatApi.sendMessage({ body: filteredMessage, channelId: activeChannelId, username })
+      await chatApi.sendMessage({ body: filteredMessage, channelId: activeChannelId, username })
         .then(() => f.resetForm({ currentMessage: '' }))
         .catch(() => toast.error(t('errors.toastifyMessage')));
     },

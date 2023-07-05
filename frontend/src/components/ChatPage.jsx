@@ -19,7 +19,7 @@ const ChatPage = () => {
 
   useEffect(() => {
     const getData = async () => {
-      axios.get(routes.dataPath(), {
+      await axios.get(routes.dataPath(), {
         headers: {
           Authorization: `Bearer ${auth.getUserInfo().token}`,
         },

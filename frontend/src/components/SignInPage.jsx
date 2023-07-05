@@ -56,7 +56,7 @@ const SignInPage = () => {
     onSubmit: async () => {
       setAuthError(false);
       setServerError(false);
-      axios
+      await axios
         .post(routes.loginPath(), {
           username: f.values.username,
           password: f.values.password,
